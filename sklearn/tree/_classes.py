@@ -354,8 +354,9 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
 
         splitter = self.splitter
         if not isinstance(self.splitter, Splitter):
+            # lizx: splitter is 'best' or 'random'
             splitter = SPLITTERS[self.splitter](criterion,
-                                                self.max_features_,
+                                                self.max_features_, # lizx: the splitter will stop once the maximum number of features has reached
                                                 min_samples_leaf,
                                                 min_weight_leaf,
                                                 random_state)
